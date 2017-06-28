@@ -21,5 +21,8 @@ function getArrayFromJsonTxtFileSrc($fileSrc, $ifReturnArray=true){
     return $imgArrayjson;
 }
 
+function testFunction(){
+    echo "helloworld";
+}
 
 ?>
