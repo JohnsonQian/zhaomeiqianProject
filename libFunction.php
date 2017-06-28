@@ -22,7 +22,8 @@ function getArrayFromJsonTxtFileSrc($fileSrc, $ifReturnArray=true){
 }
 
 function testFunction(){
-    echo "helloworld";
+    echo "hello";
 }
+
 
 ?>
