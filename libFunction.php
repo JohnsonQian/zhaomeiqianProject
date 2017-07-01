@@ -22,7 +22,7 @@ function getArrayFromJsonTxtFileSrc($fileSrc, $ifReturnArray=true){
 }
 
 function testFunction(){
-    echo "hello";
+    echo "hello"; //zhushi
 }
 
 
