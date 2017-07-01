@@ -1,0 +1,3 @@
+$indexImgInfoArray["services"]["preLoadImgNum"]
+
+echo '<div><a href="#"><img u="image" src="'.$indexImgInfoArray["services"]["imgArray"][$i].'" /></a></div>';
