@@ -32,5 +32,8 @@ function branchwto(){
 function nowwork(){
     echo "now work";
 }
+function fixbug1(){
+    
+}
 
 ?>
