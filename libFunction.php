@@ -29,5 +29,8 @@ function branchwto(){
     echo "hello"; //zhushi
 }
 
+function nowwork(){
+    echo "now work";
+}
 
 ?>
