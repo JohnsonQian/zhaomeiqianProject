@@ -25,5 +25,9 @@ function testFunction(){
     echo "hello"; //zhushi
 }
 
+function branchwto(){
+    echo "hello"; //zhushi
+}
+
 
 ?>
