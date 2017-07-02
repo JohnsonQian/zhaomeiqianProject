@@ -1,6 +1,6 @@
 <?php
-/*
-传入url路径，返回文件字符串形式内容
+/*读文件用
+ *传入url路径，返回文件字符串形式内容
  */
 function readFileBySrc($fileSrc){
     $myfile = fopen($fileSrc, "r") or die("Unable to open file".$fileSrc);
@@ -20,20 +20,4 @@ function getArrayFromJsonTxtFileSrc($fileSrc, $ifReturnArray=true){
     }
     return $imgArrayjson;
 }
-
-function testFunction(){
-    echo "hello"; //zhushi
-}
-
-function branchwto(){
-    echo "hello"; //zhushi
-}
-
-function nowwork(){
-    echo "now work";
-}
-function fixbug1(){
-    
-}
-
 ?>
