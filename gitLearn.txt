@@ -1,3 +1,32 @@
-$indexImgInfoArray["services"]["preLoadImgNum"]
+git status 			查看当前工作区文件是否更新
+git diff			查看与上一次commit的版本的差异	
+git add 文件名			把文件增量放入缓存区，待提交状态
+got rm  文件名			把文件从缓存区中删除，（不是把增量从缓存区中删除）
+git commit -m "版本注释"	提交缓存区增量文件到版本库
+git log				查看之前的版本
+git log --graph			加入分支线的查看，merge的以后看起来很方便
+git log --pretty=oneline	仅在一行显示版本号和提交时的注释，（可以和上面的参数一起用的）
+git reset --hard 版本号 	回退到版本号的版本 （HEAD代表当前版本号，HEAD~1代表前一个版本号，HEAD~2代表前两个版本号）
+git reflog			查看之前的所有指令并显示执行该指令后的版本号
 
-echo '<div><a href="#"><img u="image" src="'.$indexImgInfoArray["services"]["imgArray"][$i].'" /></a></div>';
+git checkout -- 文件名		工作区返回到最近执行add或者commit时候的状态
+git reset HEAD 文件名		删除缓存区中该文件增量待commit的修改
+
+git remote add origin git@github.com:JohnsonQian/zhaomeiqianProject.git 进入到本地仓库路径执行该命令关联到github上的共享仓库(把下一条push指令中的origin指向远程仓库中的工程)
+git push （-u） origin master	本地内容推送到远程master分支，第一次推送加u参数，以后不用	
+git clone git@github.com:JohnsonQian/zhaomeiqianProject.git	从远程共享仓库克隆到本地仓库
+
+git checkout -b 分支名		创建并切换到另一个分支 
+等同于	git branch 分支名	创建一个分支（此时head还是指向原有分支的）
+	git checkout 分支名	head指针切换到该分支
+
+git branch			显示所有的分支，以及当前所在的分支
+git merge 分支名		合并该分支到当前分支（当前分支的指针指向该分支的末尾）
+git branch -d 分支名		删除该分支（如果该分支没有被合并，会弹出警告框避免误操作，安全）
+git branch -D 分支名		删除该分支（即使没有被合并，也会被删除）
+
+git merge --no-ff -m "提交注释" 分支名  不采用ff的方式合并分支，通过新建一个版本的方式合并两个分支，建立一个新的版本号，因此也需要一个注释
+git stash 			保存当前的变化到stashList中，工作区回退到最近的版本
+git stash list			列出保存的版本
+git stash pop			把保存的版本pop出来到当前所在分支，并与当前该分支head进行merge，如果存在冲突，需要手动编辑，add commit，建议是返回之前保存所在的分支下pop出来。
+
