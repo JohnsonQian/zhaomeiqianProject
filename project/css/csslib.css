@@ -262,3 +262,47 @@ body { /*撑开最外层页面*/
     -webkit-transition: all, 0.3s;
     transition: all, 0.3s;
 }
+
+/*-----------图片，鼠标上去显示遮罩层over-------------------------*/
+
+/*-----------顶部导航菜单start-------------------------*/
+.topMenu,.subTopMenu{
+    padding-left: 0px;
+    list-style-type:none;
+}
+.topMenu{
+position: fixed;
+width: 100%;
+}
+.topMenuItem{
+    font-size: x-large;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+}
+.subTopMenu{
+  font-size: large;
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  -moz-transition: opacity, 0.3s;
+    -o-transition: opacity, 0.3s;
+    -webkit-transition: opacity, 0.3s;
+    transition: opacity, 0.3s;
+}
+.topMenuItemTitle,.subTopMenu li{
+cursor:pointer;
+}
+.subTopMenu li{
+padding-top: 10px;
+}
+.topMenuItemTitle:hover+.subTopMenu,.subTopMenu:hover{
+    opacity: 1;
+    visibility: visible;
+  -moz-transition: opacity, 0.3s;
+    -o-transition: opacity, 0.3s;
+    -webkit-transition: opacity, 0.3s;
+    transition: opacity, 0.3s;
+}
+/*-----------顶部导航菜单over-------------------------*/
