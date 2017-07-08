@@ -430,3 +430,61 @@ padding-top: 10px;
           transform: translate3d(100%, -50%, 0);
 }
 /*----------开关组件over----------------*/
+
+/*---------弹出框start-------href触发----------------*/
+.popWindowOverlay {     /*幕布container定义*/
+
+      top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;/*铺满整个页面,fixed脱离文档流*/
+  background: rgba(0, 0, 0, 0.7);/*颜色基本全黑*/
+  opacity: 0;/*未被激活时不可见，这个属性是会继承到子标签中的，而且子标签无法更改*/
+  transition: opacity 0.5s;  /*不可见到可见过渡时长为半秒*/
+  visibility: hidden;/*未被激活时不可见*/
+}
+.popWindowOverlay:target {           /*当点击按钮被激发时可见，子标签会继承opacity*/
+  visibility: visible;
+  opacity: 1;
+}
+
+.popWindow {        /*弹出框定义*/
+    max-width: 70%; /*根据内容决定框的大小，最大为70%的屏幕宽度*/
+  position: relative;
+  margin: auto;     /*div占用一行，用margin auto均分左右margin*/
+  padding: 1.5rem;  /*设置内边距*/
+  background: #fff;/*背景色为白色*/
+  border-radius: 15px; /*弹出框弧度*/
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  transition: all 0.5s;
+  transform: translateY(0%) scale(1.0); /*初始状态位置和大小*/
+  
+}
+.popWindowOverlay:target > .popWindow {
+  transform: translateY(30%) scale(0.9); /*激发状态：下移，略微缩小，过渡时间0.5秒*/
+  transition: all 0.5s;
+}
+.redCloseX {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 22px;
+  height: 22px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 20px;
+  line-height: 21px;
+  color: lightslategrey;
+  background-color: lightgrey;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  transition: .25s;
+}
+.redCloseX:hover {
+  background-color: tomato;
+  color: white;
+}
+/*---------弹出框over-------href触发----------------*/
