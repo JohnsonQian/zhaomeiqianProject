@@ -431,9 +431,66 @@ padding-top: 10px;
 }
 /*----------开关组件over----------------*/
 
-/*---------弹出框start-------href触发----------------*/
-.popWindowOverlay {     /*幕布container定义*/
 
+/*-----------汉堡包菜单组件start------------*/
+.burgerMenuIconContainer {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+.burgerMenuIcon{
+  display: block;
+  cursor: pointer;
+}
+
+.stick {
+  width: 50px;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color:  #9370DB;
+  cursor: pointer;
+
+}
+.stick:last-child {
+  margin-bottom: 0px;
+}
+
+.burgerMenuIcon.open .stick-1{
+    animation: stick-1-open .6s linear forwards;
+}
+
+.burgerMenuIcon.open .stick-2{
+    animation: stick-2-open .6s linear forwards;
+}
+.burgerMenuIcon.open .stick-3{
+    animation: stick-3-open .6s linear forwards;
+}
+
+@keyframes stick-1-open {
+  80%  {background-color: #9370DB; transform: translate3d(0px, 18px,0px) rotate(0deg);}
+  100% {background-color: #ff1456; transform: translate3d(0px, 18px,0px) rotate(45deg);}
+}
+
+@keyframes stick-2-open {
+  0%  {opacity: 1;}
+  80% {opacity: 0;}
+   100% {opacity: 0;}
+}
+
+@keyframes stick-3-open {
+  80%  {background-color: #9370DB; transform: translate3d(0px, -18px,0px) rotate(0deg);}
+  100% {background-color: #ff1456; transform: translate3d(0px, -18px,0px) rotate(-45deg);}
+}
+
+/*-----------汉堡包菜单组件over------------*/
+
+
+/*---------弹出框组件start-------href触发----------------*/
+.popWindowOverlay {     /*幕布container定义*/
+  visibility: hidden;/*未被激活时不可见*/
       top: 0;
   bottom: 0;
   left: 0;
@@ -442,7 +499,7 @@ padding-top: 10px;
   background: rgba(0, 0, 0, 0.7);/*颜色基本全黑*/
   opacity: 0;/*未被激活时不可见，这个属性是会继承到子标签中的，而且子标签无法更改*/
   transition: opacity 0.5s;  /*不可见到可见过渡时长为半秒*/
-  visibility: hidden;/*未被激活时不可见*/
+
 }
 .popWindowOverlay:target {           /*当点击按钮被激发时可见，子标签会继承opacity*/
   visibility: visible;
@@ -487,4 +544,5 @@ padding-top: 10px;
   background-color: tomato;
   color: white;
 }
-/*---------弹出框over-------href触发----------------*/
+/*---------弹出框over-----------------------*/
+

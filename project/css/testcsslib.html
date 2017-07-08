@@ -19,7 +19,7 @@
     <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
 </ul>-->
 
-<!--顶部导航菜单 csslib.css-->
+<!--顶部导航菜单组件 csslib.css-->
 <!--<ul class="topMenu">
     <li class="topMenuItem">
         <div class="topMenuItemTitle">栏目一</div>
@@ -60,12 +60,27 @@
     <label for="switchId"></label>
   </div>-->
 
-
-<!--弹出框组件 -->
-<div class="wrapper">
-  <a class="btn" href="#popWindow1">触发弹出框</a>
+<!--汉堡包菜单组件 csslib.css jslib.js-->
+ <div class="burgerMenuIconContainer">
+    <a class="burgerMenuIcon"  href="#burgerPopMenu">
+        <div class="stick stick-1"></div>
+        <div class="stick stick-2"></div>
+        <div class="stick stick-3"></div>
+    </a>
+</div>
+<div id="burgerPopMenu" class="popWindowOverlay">
+  <div class="popWindow">
+    <a class="redCloseX" href="#">×</a>
+    <div>
+    <h2>弹出菜单</h2>
+      <p>内容就当是正常的布局方式，甚至可以是另一个页面</p>
+      <p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+    </div>
+  </div>
 </div>
 
+  <!--弹出框组件 csslib.css-->
+<a class="btn" href="#popWindow1">触发弹出框</a>
 <div id="popWindow1" class="popWindowOverlay">
   <div class="popWindow">
     <a class="redCloseX" href="#">×</a>
@@ -80,7 +95,7 @@
 
 
 
-
-
+<script src="./jquery.min.js" ></script> 
+<script src="./jslib.js" ></script> 
 </body>
 </html>
