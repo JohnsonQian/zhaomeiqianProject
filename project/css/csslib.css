@@ -389,3 +389,44 @@ padding-top: 10px;
     }
 }
 /*-----------加载动画over-------------------*/
+
+/*----------开关组件start----------------*/
+.switch label {         /*组件里面的input是隐藏的，只是想借他存放选中与否的状态，lable才是按钮样式*/
+  display: block;
+  width: 44px;
+  height: 16px;
+  border-radius: 10px;
+  background: rgba(189, 195, 199, 0.5);
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: background 350ms ease;        /*背景色渐变*/
+  transition: background 350ms ease;
+}
+.switch label:after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #bdc3c7; /*颜色为灰色*/
+  position: absolute;
+    -webkit-transform: translate3d(0, -50%, 0);  /*未选中状态的3d座标，圆心居中必须先把圆上移圆高度的50%*/
+          transform: translate3d(0, -50%, 0);
+  top: 50%;                                      /*下移父元素高度的50%*/
+  -webkit-transition: all 120ms linear;
+  transition: all 120ms linear;
+}
+.switch input:checked + label {              /*选中时变为浅紫色*/
+  background: rgba(142, 68, 173, 0.6);
+}
+
+.switch input:checked + label:after {       /*选中状态的3d座标*/
+  background: #8e44ad;
+  -webkit-transform: translate3d(100%, -50%, 0);
+          transform: translate3d(100%, -50%, 0);
+}
+/*----------开关组件over----------------*/
