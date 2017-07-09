@@ -272,7 +272,13 @@ body { /*撑开最外层页面*/
 }
 .topMenu{
 position: fixed;
+top: 0px;
 width: 100%;
+padding-top: 10px;
+padding-bottom: 10px;
+margin-top: 0px;
+margin-bottom: 0px;
+/*background-color: rgba(247,247,247,0.9);*/ /*当需要的时候可以给菜单加上背景色，以免菜单不清晰*/
 }
 .topMenuItem{
     font-size: x-large;
@@ -280,16 +286,17 @@ width: 100%;
     margin-left: 20px;
     margin-right: 20px;
     text-align: center;
+    position: relative;
 }
 .subTopMenu{
   font-size: large;
-  position: relative;
+  width: 100%;
   opacity: 0;
-  visibility: hidden;
-  -moz-transition: opacity, 0.3s;
-    -o-transition: opacity, 0.3s;
-    -webkit-transition: opacity, 0.3s;
-    transition: opacity, 0.3s;
+  position: absolute;
+  -moz-transition: all, 0.7s;
+    -o-transition: all, 0.7s;
+    -webkit-transition: all, 0.7s;
+    transition: all, 0.7s;
 }
 .topMenuItemTitle,.subTopMenu li{
 cursor:pointer;
@@ -299,11 +306,11 @@ padding-top: 10px;
 }
 .topMenuItemTitle:hover+.subTopMenu,.subTopMenu:hover{
     opacity: 1;
-    visibility: visible;
-  -moz-transition: opacity, 0.3s;
-    -o-transition: opacity, 0.3s;
-    -webkit-transition: opacity, 0.3s;
-    transition: opacity, 0.3s;
+   position: relative;  /*占用文档流，如果前面菜单背景色加上的话必须要占用文档流才能把背景色往下撑开*/
+  -moz-transition: all, 0.7s;
+    -o-transition: all, 0.7s;
+    -webkit-transition: all, 0.7s;
+    transition: all, 0.7s;
 }
 /*-----------顶部导航菜单over-------------------------*/
 
