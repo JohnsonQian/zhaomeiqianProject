@@ -187,10 +187,11 @@ body { /*撑开最外层页面*/
 /*-----------------幻灯over-------------------------------------*/
 
 /*-----------图片，鼠标上去显示遮罩层start-------------------------*/
+/*他是基于background属性的，是属性而不是image标签，所以要靠容器来定义大小，然后自己去铺满容器*/
 .hiddenTextPic,
 .hiddenTextPic:after {
-    background-size: cover;  /*覆盖外部容器，图像会形变，如果不希望变形就注释*/
-    background-repeat: none;  /*图片不repeat*/
+    background-size: cover;  
+    background-repeat: round;  /*超出部分会截取用none，如果不截取要形变就使用round*/
     background-image: url(./img/slideshowimg/bg1.jpg);
     z-index: 0;
     padding: 0px;
@@ -264,6 +265,73 @@ body { /*撑开最外层页面*/
 }
 
 /*-----------图片，鼠标上去显示遮罩层over-------------------------*/
+
+/*-----------基于img的遮罩图片start-------------------------*/
+.baseOnImgHiddenTextPic{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.baseOnImgHiddenTextPic .hiddenTextPicImg{
+  width: 100%;
+  display: block;
+}
+.baseOnImgHiddenTextPic .overlay{
+position: absolute;
+width: 100%;
+height: 100%;
+top: 0px;
+left: 0px;
+opacity: 0;
+background:rgba(56, 56, 56, 0.68);
+-moz-transition: opacity, 0.3s;  /*设置移动时间*/
+    -o-transition: opacity, 0.3s;
+    -webkit-transition: opacity, 0.3s;
+    transition: opacity, 0.3s;
+}
+
+.baseOnImgHiddenTextPic .overlay .hiddenText{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: x-large;
+    color: cornsilk;
+    position: absolute;
+
+    -moz-transform: translate3d(0, 150%, 0);
+    -ms-transform: translate3d(0, 150%, 0);
+    -webkit-transform: translate3d(0, 150%, 0);
+    transform: translate3d(0, 150%, 0);
+
+    -moz-transition: all, 0.3s;  /*设置移动时间*/
+    -o-transition: all, 0.3s;
+    -webkit-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
+
+.baseOnImgHiddenTextPic:hover .overlay{
+opacity: 1;
+    -moz-transition: opacity, 0.3s;  /*设置移动时间*/
+    -o-transition: opacity, 0.3s;
+    -webkit-transition: opacity, 0.3s;
+    transition: opacity, 0.3s;
+}
+
+.baseOnImgHiddenTextPic:hover .overlay .hiddenText{
+    -moz-transform: translate3d(0, 50%, 0);
+    -ms-transform: translate3d(0, 50%, 0);
+    -webkit-transform: translate3d(0, 50%, 0);
+    transform: translate3d(0, 50%, 0);
+
+    -moz-transition: all, 0.3s;  /*设置移动时间*/
+    -o-transition: all, 0.3s;
+    -webkit-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
+/*-----------基于img的遮罩图片over-------------------------*/
 
 /*-----------顶部导航菜单start-------------------------*/
 .topMenu,.subTopMenu{
@@ -552,4 +620,66 @@ padding-top: 10px;
   color: white;
 }
 /*---------弹出框over-----------------------*/
+/*---------布局自适应标签-----------------------*/
 
+@media only screen and (min-width : 768px) { /*当屏幕宽度像素大于768时*/
+    .smScreenFull{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    .smScreenHalf{
+        width: 50%;
+        position: relative;
+        display: inline-block;
+    }
+    .smScreenQuarter{
+        width: 25%;
+        position: relative;
+        display: inline-block;
+    }
+    
+    
+}
+
+/* 中等设备显示器 */
+@media only screen and (min-width : 992px) {  /*当屏幕宽度像素大于992时*/
+    
+    .midScreenFull{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    .midScreenHalf{
+        width: 49%;
+        position: relative;
+        display: inline-block;
+    }
+    .midScreenQuarter{
+        width: 25%;
+        position: relative;
+        display: inline-block;
+    }
+    
+}
+
+/*  */
+@media only screen and (min-width : 1200px) {  /*当屏幕宽度像素大于1200时*/
+    .lgScreenFull{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    .lgScreenHalf{
+        width: 50%;
+        position: relative;
+        display: inline-block;
+    }
+    .lgScreenQuarter{
+        width: 25%;
+        position: relative;
+        display: inline-block;
+    }
+    
+    
+}
