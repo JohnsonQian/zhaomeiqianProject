@@ -620,7 +620,7 @@ padding-top: 10px;
   color: white;
 }
 /*---------弹出框over-----------------------*/
-/*---------布局自适应标签-----------------------*/
+/*---------自适应布局标签 start-----------------------*/
 
 @media only screen and (min-width : 768px) { /*当屏幕宽度像素大于768时*/
     .smScreenFull{
@@ -629,12 +629,17 @@ padding-top: 10px;
         display: inline-block;
     }
     .smScreenHalf{
-        width: 50%;
+        width: 49%;
         position: relative;
         display: inline-block;
     }
     .smScreenQuarter{
-        width: 25%;
+        width: 24%;
+        position: relative;
+        display: inline-block;
+    }
+    .smScreenThreeQuarter{
+        width: 74%;
         position: relative;
         display: inline-block;
     }
@@ -656,14 +661,19 @@ padding-top: 10px;
         display: inline-block;
     }
     .midScreenQuarter{
-        width: 25%;
+        width: 24%;
+        position: relative;
+        display: inline-block;
+    }
+    .midScreenThreeQuarter{
+        width: 74%;
         position: relative;
         display: inline-block;
     }
     
 }
 
-/*  */
+/* 大显示器 */
 @media only screen and (min-width : 1200px) {  /*当屏幕宽度像素大于1200时*/
     .lgScreenFull{
         width: 100%;
@@ -671,15 +681,34 @@ padding-top: 10px;
         display: inline-block;
     }
     .lgScreenHalf{
-        width: 50%;
+        width: 49%;
         position: relative;
         display: inline-block;
     }
     .lgScreenQuarter{
-        width: 25%;
+        width: 24%;
+        position: relative;
+        display: inline-block;
+    } 
+    .lgScreenThreeQuarter{
+        width: 74%;
         position: relative;
         display: inline-block;
     }
-    
-    
+}
+/*---------自适应布局标签 over-----------------------*/
+
+/*---------floatLeft标签start--------------*/
+.floatLeft{
+    float: left;
+}
+
+/*---------floatLeft标签over--------------*/
+
+/*---------瀑布流组件布局start--------------*/
+.waterflowContainer{
+    position: relative;
+}
+.waterflowItem{
+    position: absolute;
 }
