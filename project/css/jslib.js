@@ -13,6 +13,18 @@ $(document).ready(function() {
 
 /*--------瀑布布局start------------------*/
 //定义瀑布布局函数，外部传入参数： rowItemNum 一行的个数
+
+
+
+Array.prototype.max = function () {
+    var max = this[0];
+    for (var i = 1; i < this.length; i++) {
+        if (this[i] > max) {
+            max = this[i];
+        }
+    }
+    return max;
+}
 jQuery.fn.waterFlowSet=function(rowItemNum){
     var oneRowItemNum = rowItemNum;
     var heightArr = [];
@@ -33,6 +45,8 @@ jQuery.fn.waterFlowSet=function(rowItemNum){
         heightArr[index%oneRowItemNum]+=$(this).height();
         console.log("第:"+index+"个元素的高度是"+$(this).height());
     });
+    console.log("最高height为："+heightArr.max());
+    $(".waterflowContainer").css('height', heightArr.max());;
 }
 //在window的load事件里面初始化布局，并且托管到
 $(".waterflowContainer").waterFlowSet(3); //对外部组件使用瀑布布局，传入参数为4代表一行4个元素
