@@ -1,5 +1,20 @@
 $(document).ready(function() {
 
+/*-------顶部导航菜单start---------------------*/
+$(window).scroll(function(event) {
+  if ($(document).scrollTop()>20) {
+    $(".topMenu").css('background-color', 'rgba(247,247,247,0.9)');
+  }else{
+    $(".topMenu").css('background-color', 'rgba(247,247,247,0)');
+  } 
+});
+
+/*--------顶部导航菜单over----------------------------*/
+
+
+
+
+
 
 /*-------汉堡包菜单组件start---------------------*/
   $(".burgerMenuIcon").click(function() {
