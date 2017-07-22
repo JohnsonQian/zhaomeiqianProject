@@ -10,6 +10,10 @@ body { /*撑开最外层页面*/
     overflow-y:auto;
 }
 
+.contentCenter{   /*内容居中*/
+text-align: center;
+}
+
 /*=========================基本样式 over====================================*/
 
 
@@ -721,3 +725,32 @@ padding-top: 10px;
     position: absolute;
 }
 /*---------瀑布流组件布局over--------------*/
+
+
+/*----等比缩放图像组件start----------*/
+
+.resposityImgContainer{
+  overflow: hidden;
+}
+.resposityImg{
+  height: 100%;
+}
+
+/*------等比缩放组件over------*/
+
+
+/*------拖拽幻灯图片组件start--------*/
+
+.galaryWindow{
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  height: 370px;
+  background-color: black;
+  vertical-align: center;
+}
+.galaryItem{
+  height: 100%;
+}
+
+/*------拖拽幻灯图片组件over--------*/

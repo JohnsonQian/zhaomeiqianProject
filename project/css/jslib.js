@@ -86,11 +86,166 @@ $("img[lazyLoadSrc]").lazyLoadFunc(1);
 $(window).scroll(function(event) {
    $("img[lazyLoadSrc]").lazyLoadFunc(1);
 });
-
-
-
-
 /*--lazyload读取图片（当移动到附近时才加载图片） over----------------*/
+
+/*--------等比缩放组件start------------*/
+jQuery.fn.setResposityImg=function(attr){
+    $(".resposityImgContainer").each(function(index, el) {
+       if($(el).find('.resposityImg').width()>$(el).width()){
+            $(el).find('.resposityImg').css({
+                height: 'auto',
+                width: '100%'
+            });
+       }
+    });
+}
+ $(".resposityImgContainer").setResposityImg("");
+/*-----等比缩放组件over---------------*/
+
+/*-----拖拽幻灯图片组件start---------------*/
+jQuery.fn.initGalary=function(initIndex){
+    $(".galaryWindow").each(function(index, el) {
+        $(el).find('.galaryItem').each(function(index, el) {
+            if($(el).width()>$('.galaryWindow').width()){
+                $(el).css({
+                   height: 'auto',
+                    width: '100%'
+                });
+            }
+        });
+       
+
+$(el).find('.galaryItem').attr('show', '0').css({
+            position: 'absolute',
+            top: $(this).height()
+        });
+
+       $(el).find('.galaryItem').eq(initIndex).attr('show', '1').css({
+        top: ($('.galaryWindow').height()-$(el).find('.galaryItem').eq(initIndex).height())/2,
+            position: 'absolute',
+            left: ($(this).width()- $(el).find('.galaryItem').eq(initIndex).width())/2
+        });
+
+       
+       
+        $(el).find('.galaryItem[show=1]').next('.galaryItem').css({
+            position: 'absolute',
+            top: ($('.galaryWindow').height()-$(el).find('.galaryItem[show=1]').next('.galaryItem').height())/2,
+            left: $(this).width()
+        });
+        $(el).find('.galaryItem[show=1]').prev('.galaryItem').css({
+            position: 'absolute',
+            top: ($('.galaryWindow').height()-$(el).find('.galaryItem[show=1]').prev('.galaryItem').height())/2,
+            left:-$(el).find('.galaryItem[show=1]').prev('.galaryItem').width()
+        });
+
+       });
+
+};  //初始化函数定义结束
+
+
+
+
+var showIndex = 0;
+$(".galaryWindow").initGalary(showIndex);
+ var status = 0;
+    var mousedownX = 0;
+    var clickpointInPicX = 0;
+   $(".galaryWindow .galaryItem").mousedown(function(mouseDownEvent) {
+    $(".galaryWindow .galaryItem").css('transition', 'none');
+    mouseDownEvent.preventDefault();
+    status = 1;
+    console.log("galary鼠标按下事件，pageX = "+mouseDownEvent.pageX);
+       mousedownX = mouseDownEvent.pageX;
+       clickpointInPicX = mousedownX - $(this).offset().left;
+       
+   });
+   $('.galaryWindow').mousemove(function(mouseMoveEvent) {
+    if(status==1){
+        console.log("galary鼠标移动事件，pageX = "+mouseMoveEvent.pageX);
+           $('.galaryWindow .galaryItem[show=1]').css('left', mouseMoveEvent.pageX-$('.galaryWindow').offset().left - clickpointInPicX); 
+           $('.galaryWindow .galaryItem[show=1]').next('.galaryItem').css('left', mouseMoveEvent.pageX-$('.galaryWindow').offset().left - clickpointInPicX+$('.galaryWindow .galaryItem[show=1]').width()+($('.galaryWindow').width()- $('.galaryItem[show=1]').width())/2);
+            $('.galaryWindow .galaryItem[show=1]').prev('.galaryItem').css('left', mouseMoveEvent.pageX-$('.galaryWindow').offset().left - clickpointInPicX-($('.galaryWindow').width()- $('.galaryItem[show=1]').width())/2-$('.galaryWindow .galaryItem[show=1]').prev('.galaryItem').width());
+    }});
+
+     $('.galaryWindow').mouseup(function(mouseUpEvent) {
+        console.log("galary鼠标放开事件");
+        if($('.galaryWindow .galaryItem[show=1]').position().left+$('.galaryWindow .galaryItem[show=1]').width()<$('.galaryWindow').width()/2){
+            console.log('左移动成功');
+            if (showIndex<$('.galaryWindow .galaryItem').length-1) {
+                showIndex = showIndex+1;
+            };
+            $('.galaryWindow .galaryItem').css({
+                transition: 'left 1s',
+            });
+            $(".galaryWindow").initGalary(showIndex);
+        }else if($('.galaryWindow .galaryItem[show=1]').position().left>$('.galaryWindow').width()/2){
+            console.log('右移动成功');
+            if(showIndex>0){
+                showIndex = showIndex-1;
+            }
+            $('.galaryWindow .galaryItem').css({
+                transition: 'left 1s',
+            });
+            $(".galaryWindow").initGalary(showIndex);
+        }else{
+             console.log('复位');
+             $('.galaryWindow .galaryItem').css({
+                transition: 'left 1s',
+            });
+            $(".galaryWindow").initGalary(showIndex);
+        }
+           status=0;
+           mousedownX = 0;
+           clickpointInPicX = 0;
+    });
+       $('.galaryWindow').mouseleave(function(mouseLeaveEvent) {
+           if(status == 1){
+            console.log("galary鼠标移出galary容器");
+            if($('.galaryWindow .galaryItem[show=1]').position().left+$('.galaryWindow .galaryItem[show=1]').width()<$('.galaryWindow').width()/2){
+            console.log('左移动成功');
+            if (showIndex<$('.galaryWindow .galaryItem').length-1) {
+                showIndex = showIndex+1;
+            };
+            $('.galaryWindow .galaryItem').css({
+                transition: 'left 1s',
+            });
+            $(".galaryWindow").initGalary(showIndex);
+
+
+
+
+        }else if($('.galaryWindow .galaryItem[show=1]').position().left>$('.galaryWindow').width()/2){
+            console.log('右移动成功');
+            if(showIndex>0){
+                showIndex = showIndex-1;
+            }
+            $('.galaryWindow .galaryItem').css({
+                transition: 'left 1s',
+            });
+            $(".galaryWindow").initGalary(showIndex);
+
+
+        }else{
+             console.log('复位');
+             $('.galaryWindow .galaryItem').css({
+                transition: 'left 1s',
+            });
+             $(".galaryWindow").initGalary(showIndex);
+        }
+
+            status = 0;
+            mousedownX=0;
+            clickpointInPicX = 0;
+           }
+
+       }); 
+/*-----拖拽幻灯图片组件over---------------*/
+
+
+
+
+
 
 
 
