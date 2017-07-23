@@ -103,143 +103,155 @@ jQuery.fn.setResposityImg=function(attr){
 /*-----等比缩放组件over---------------*/
 
 /*-----拖拽幻灯图片组件start---------------*/
+//定义初始化函数,initIndex为显示的img的index
 jQuery.fn.initGalary=function(initIndex){
-    $(".galaryWindow").each(function(index, el) {
-        $(el).find('.galaryItem').each(function(index, el) {
-            if($(el).width()>$('.galaryWindow').width()){
+     //遍历每一个.galaryWindow页面中可能不止一处用了这个
+        $(this).find('.galaryItem').each(function(index, el) { 
+            if($(el).width()>$(el).parent('.galaryWindow').width()){
                 $(el).css({
                    height: 'auto',
                     width: '100%'
-                });
+                }); //默认是根据height=100%的，如果横向溢出就根据width = 100%
             }
         });
        
-
-$(el).find('.galaryItem').attr('show', '0').css({
+        $(this).find('.galaryItem').attr('show', '0').css({
             position: 'absolute',
             top: $(this).height()
-        });
+        }); //对于window的子元素全部隐藏到window下方，设置属性为不可见
 
-       $(el).find('.galaryItem').eq(initIndex).attr('show', '1').css({
-        top: ($('.galaryWindow').height()-$(el).find('.galaryItem').eq(initIndex).height())/2,
+        //index位置以及相邻位置的img标签设置纵向居中，横向居中
+        //
+        $(this).find('.galaryItem').eq(initIndex).attr('show', '1').css({
+            top: ($(this).height()-$(this).find('.galaryItem').eq(initIndex).height())/2,
             position: 'absolute',
-            left: ($(this).width()- $(el).find('.galaryItem').eq(initIndex).width())/2
-        });
-
-       
-       
-        $(el).find('.galaryItem[show=1]').next('.galaryItem').css({
+            left: ($(this).width()-$(this).find('.galaryItem').eq(initIndex).width())/2
+        }); 
+        $(this).find('.galaryItem[show=1]').next('.galaryItem').css({
             position: 'absolute',
-            top: ($('.galaryWindow').height()-$(el).find('.galaryItem[show=1]').next('.galaryItem').height())/2,
+            top: ($(this).height()-$(this).find('.galaryItem[show=1]').next('.galaryItem').height())/2,
             left: $(this).width()
         });
-        $(el).find('.galaryItem[show=1]').prev('.galaryItem').css({
+        $(this).find('.galaryItem[show=1]').prev('.galaryItem').css({
             position: 'absolute',
-            top: ($('.galaryWindow').height()-$(el).find('.galaryItem[show=1]').prev('.galaryItem').height())/2,
-            left:-$(el).find('.galaryItem[show=1]').prev('.galaryItem').width()
+            top: ($(this).height()-$(this).find('.galaryItem[show=1]').prev('.galaryItem').height())/2,
+            left:-$(this).find('.galaryItem[show=1]').prev('.galaryItem').width()
         });
-
-       });
-
-};  //初始化函数定义结束
+};  
+//定义初始化函数结束
 
 
-
-
-var showIndex = 0;
-$(".galaryWindow").initGalary(showIndex);
- var status = 0;
-    var mousedownX = 0;
-    var clickpointInPicX = 0;
-   $(".galaryWindow .galaryItem").mousedown(function(mouseDownEvent) {
-    $(".galaryWindow .galaryItem").css('transition', 'none');
-    mouseDownEvent.preventDefault();
-    status = 1;
-    console.log("galary鼠标按下事件，pageX = "+mouseDownEvent.pageX);
-       mousedownX = mouseDownEvent.pageX;
-       clickpointInPicX = mousedownX - $(this).offset().left;
-       
+//--------------------------------------------------------------------------
+jQuery.fn.setGalary=function(attrObj){
+   attrObj.showIndex = 0;
+   $(this).initGalary(attrObj.showIndex);  //this指window
+   attrObj.status = 0;
+   attrObj.mousedownX = 0;
+   attrObj.clickpointInPicX = 0;
+   //图片加mousedown事件监听
+   $(this).find('.galaryItem').mousedown(function(mouseDownEvent) { 
+        $(this).siblings(' .galaryItem').css('transition', 'none');  //this指window
+        $(this).css('transition', 'none');
+        mouseDownEvent.preventDefault();
+        attrObj.status = 1;
+        console.log("galary鼠标按下事件");
+        attrObj.mousedownX = mouseDownEvent.pageX;
+        attrObj.clickpointInPicX = attrObj.mousedownX - $(this).offset().left;
    });
-   $('.galaryWindow').mousemove(function(mouseMoveEvent) {
-    if(status==1){
-        console.log("galary鼠标移动事件，pageX = "+mouseMoveEvent.pageX);
-           $('.galaryWindow .galaryItem[show=1]').css('left', mouseMoveEvent.pageX-$('.galaryWindow').offset().left - clickpointInPicX); 
-           $('.galaryWindow .galaryItem[show=1]').next('.galaryItem').css('left', mouseMoveEvent.pageX-$('.galaryWindow').offset().left - clickpointInPicX+$('.galaryWindow .galaryItem[show=1]').width()+($('.galaryWindow').width()- $('.galaryItem[show=1]').width())/2);
-            $('.galaryWindow .galaryItem[show=1]').prev('.galaryItem').css('left', mouseMoveEvent.pageX-$('.galaryWindow').offset().left - clickpointInPicX-($('.galaryWindow').width()- $('.galaryItem[show=1]').width())/2-$('.galaryWindow .galaryItem[show=1]').prev('.galaryItem').width());
+    
+    //mousemove事件监听
+    $(this).mousemove(function(mouseMoveEvent) {
+    if(attrObj.status==1){
+            $(mouseMoveEvent.currentTarget).find('.galaryItem[show=1]').css('left', mouseMoveEvent.pageX-$(mouseMoveEvent.currentTarget).offset().left - attrObj.clickpointInPicX); 
+            $(mouseMoveEvent.currentTarget).find('.galaryItem[show=1]').next('.galaryItem').css('left', mouseMoveEvent.pageX-$(mouseMoveEvent.currentTarget).offset().left - attrObj.clickpointInPicX+$(mouseMoveEvent.currentTarget).find('.galaryItem[show=1]').width()+($(mouseMoveEvent.currentTarget).width()- $(mouseMoveEvent.currentTarget).find('.galaryItem[show=1]').width())/2);
+            $(mouseMoveEvent.currentTarget).find('.galaryItem[show=1]').prev('.galaryItem').css('left', mouseMoveEvent.pageX-$(mouseMoveEvent.currentTarget).offset().left - attrObj.clickpointInPicX-($(mouseMoveEvent.currentTarget).width()- $(mouseMoveEvent.currentTarget).find('.galaryItem[show=1]').width())/2-$(mouseMoveEvent.currentTarget).find('.galaryItem[show=1]').prev('.galaryItem').width());
     }});
 
-     $('.galaryWindow').mouseup(function(mouseUpEvent) {
+    //mouseup事件监听
+    $(this).mouseup(function(mouseUpEvent) {
         console.log("galary鼠标放开事件");
-        if($('.galaryWindow .galaryItem[show=1]').position().left+$('.galaryWindow .galaryItem[show=1]').width()<$('.galaryWindow').width()/2){
+        if($(mouseUpEvent.currentTarget).find('.galaryItem[show=1]').position().left+$(mouseUpEvent.currentTarget).find('.galaryItem[show=1]').width()<$(mouseUpEvent.currentTarget).width()/2){
             console.log('左移动成功');
-            if (showIndex<$('.galaryWindow .galaryItem').length-1) {
-                showIndex = showIndex+1;
+            if (attrObj.showIndex<$(mouseUpEvent.currentTarget).find('.galaryItem').length-1) {
+                attrObj.showIndex = attrObj.showIndex+1;
             };
-            $('.galaryWindow .galaryItem').css({
+            $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(".galaryWindow").initGalary(showIndex);
-        }else if($('.galaryWindow .galaryItem[show=1]').position().left>$('.galaryWindow').width()/2){
+            $(this).initGalary(attrObj.showIndex);
+        }else if($(this).find('.galaryItem[show=1]').position().left>$(this).width()/2){
             console.log('右移动成功');
-            if(showIndex>0){
-                showIndex = showIndex-1;
+            if(attrObj.showIndex>0){
+                attrObj.showIndex = attrObj.showIndex-1;
             }
-            $('.galaryWindow .galaryItem').css({
+            $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(".galaryWindow").initGalary(showIndex);
+            $(this).initGalary(attrObj.showIndex);
         }else{
              console.log('复位');
-             $('.galaryWindow .galaryItem').css({
+             $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(".galaryWindow").initGalary(showIndex);
+            $(this).initGalary(attrObj.showIndex);
         }
-           status=0;
-           mousedownX = 0;
-           clickpointInPicX = 0;
+           attrObj.status=0;
+           attrObj.mousedownX = 0;
+           attrObj.clickpointInPicX = 0;
     });
-       $('.galaryWindow').mouseleave(function(mouseLeaveEvent) {
-           if(status == 1){
+
+    //mouseleave事件监听
+        $(this).mouseleave(function(mouseLeaveEvent) {
+           if(attrObj.status == 1){
             console.log("galary鼠标移出galary容器");
-            if($('.galaryWindow .galaryItem[show=1]').position().left+$('.galaryWindow .galaryItem[show=1]').width()<$('.galaryWindow').width()/2){
+            if($(this).find('.galaryItem[show=1]').position().left+$(this).find('.galaryItem[show=1]').width()<$(this).width()/2){
             console.log('左移动成功');
-            if (showIndex<$('.galaryWindow .galaryItem').length-1) {
-                showIndex = showIndex+1;
+            if (attrObj.showIndex<$(this).find('.galaryItem').length-1) {
+                attrObj.showIndex = attrObj.showIndex+1;
             };
-            $('.galaryWindow .galaryItem').css({
+            $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(".galaryWindow").initGalary(showIndex);
+            $(this).initGalary(attrObj.showIndex);
 
-
-
-
-        }else if($('.galaryWindow .galaryItem[show=1]').position().left>$('.galaryWindow').width()/2){
+        }else if($(this).find('.galaryItem[show=1]').position().left>$(this).width()/2){
             console.log('右移动成功');
-            if(showIndex>0){
-                showIndex = showIndex-1;
+            if(attrObj.showIndex>0){
+                attrObj.showIndex = attrObj.showIndex-1;
             }
-            $('.galaryWindow .galaryItem').css({
+            $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(".galaryWindow").initGalary(showIndex);
+            $(this).initGalary(attrObj.showIndex);
 
 
         }else{
              console.log('复位');
-             $('.galaryWindow .galaryItem').css({
+             $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-             $(".galaryWindow").initGalary(showIndex);
+             $(this).initGalary(attrObj.showIndex);
         }
 
-            status = 0;
-            mousedownX=0;
-            clickpointInPicX = 0;
+            attrObj.status = 0;
+            attrObj.mousedownX=0;
+            attrObj.clickpointInPicX = 0;
            }
-
        }); 
+ };
+
+var attrObj1={showIndex:0};
+$('#galaryWindow1').setGalary(attrObj1);
+var attrObj2={showIndex:0};
+$('#galaryWindow2').setGalary(attrObj2);
+
+
+
+
+
+
+
+
 /*-----拖拽幻灯图片组件over---------------*/
 
 
