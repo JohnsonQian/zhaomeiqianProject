@@ -141,7 +141,6 @@ jQuery.fn.initGalary=function(initIndex){
 //定义初始化函数结束
 
 
-//--------------------------------------------------------------------------
 jQuery.fn.setGalary=function(attrObj){
    attrObj.showIndex = 0;
    $(this).initGalary(attrObj.showIndex);  //this指window
@@ -245,17 +244,16 @@ $('#galaryWindow1').setGalary(attrObj1);
 var attrObj2={showIndex:0};
 $('#galaryWindow2').setGalary(attrObj2);
 
-
-
-
-
-
-
-
 /*-----拖拽幻灯图片组件over---------------*/
 
-
-
+/*---高度随宽度缩放组件start------*/
+jQuery.fn.heightSetByWidth=function(){
+    $('[heightAttr]').each(function(index, el) {
+        $(el).css('height', $(el).width()*$(el).attr('heightAttr'));
+    });
+}
+$('body').heightSetByWidth();
+/*---高度随宽度缩放组件over------*/
 
 
 
