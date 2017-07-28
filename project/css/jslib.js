@@ -104,7 +104,23 @@ jQuery.fn.setResposityImg=function(attr){
 
 /*-----拖拽幻灯图片组件start---------------*/
 //定义初始化函数,initIndex为显示的img的index
-jQuery.fn.initGalary=function(initIndex){
+jQuery.fn.initGalary=function(initIndex,lazyLoadNo){
+    console.log("---initIndex------"+initIndex);
+     console.log("----lazyLoadNo---"+lazyLoadNo);
+    if(undefined != lazyLoadNo && lazyLoadNo>0){
+        for (var i = 0; i <= lazyLoadNo; i++) {
+            if(initIndex-i>=0){
+               if(undefined == $(this).find('.galaryItem').eq(initIndex-i).attr('src')){
+                    $(this).find('.galaryItem').eq(initIndex-i).attr('src',$(this).find('.galaryItem').eq(initIndex-i).attr('galaryItemLazyLoadSrc'));
+               }
+            }
+            if(initIndex+i<$(this).find('.galaryItem').length){
+                if(undefined == $(this).find('.galaryItem').eq(initIndex+i).attr('src')){
+                        $(this).find('.galaryItem').eq(initIndex+i).attr('src',$(this).find('.galaryItem').eq(initIndex+i).attr('galaryItemLazyLoadSrc'));
+               }
+            }
+        };
+    }
      //遍历每一个.galaryWindow页面中可能不止一处用了这个
         $(this).find('.galaryItem').each(function(index, el) { 
             if($(el).width()>$(el).parent('.galaryWindow').width()){
@@ -142,8 +158,7 @@ jQuery.fn.initGalary=function(initIndex){
 
 
 jQuery.fn.setGalary=function(attrObj){
-   attrObj.showIndex = 0;
-   $(this).initGalary(attrObj.showIndex);  //this指window
+   $(this).initGalary(attrObj.showIndex,attrObj.lazyLoadNum);  //this指window
    attrObj.status = 0;
    attrObj.mousedownX = 0;
    attrObj.clickpointInPicX = 0;
@@ -177,7 +192,7 @@ jQuery.fn.setGalary=function(attrObj){
             $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(this).initGalary(attrObj.showIndex);
+            $(this).initGalary(attrObj.showIndex,attrObj.lazyLoadNum);
         }else if($(this).find('.galaryItem[show=1]').position().left>$(this).width()/2){
             console.log('右移动成功');
             if(attrObj.showIndex>0){
@@ -186,13 +201,13 @@ jQuery.fn.setGalary=function(attrObj){
             $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(this).initGalary(attrObj.showIndex);
+            $(this).initGalary(attrObj.showIndex,attrObj.lazyLoadNum);
         }else{
              console.log('复位');
              $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(this).initGalary(attrObj.showIndex);
+            $(this).initGalary(attrObj.showIndex,attrObj.lazyLoadNum);
         }
            attrObj.status=0;
            attrObj.mousedownX = 0;
@@ -211,7 +226,7 @@ jQuery.fn.setGalary=function(attrObj){
             $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(this).initGalary(attrObj.showIndex);
+            $(this).initGalary(attrObj.showIndex,attrObj.lazyLoadNum);
 
         }else if($(this).find('.galaryItem[show=1]').position().left>$(this).width()/2){
             console.log('右移动成功');
@@ -221,7 +236,7 @@ jQuery.fn.setGalary=function(attrObj){
             $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-            $(this).initGalary(attrObj.showIndex);
+            $(this).initGalary(attrObj.showIndex,attrObj.lazyLoadNum);
 
 
         }else{
@@ -229,7 +244,7 @@ jQuery.fn.setGalary=function(attrObj){
              $(this).find('.galaryItem').css({
                 transition: 'left 1s',
             });
-             $(this).initGalary(attrObj.showIndex);
+             $(this).initGalary(attrObj.showIndex,attrObj.lazyLoadNum);
         }
 
             attrObj.status = 0;
@@ -239,9 +254,14 @@ jQuery.fn.setGalary=function(attrObj){
        }); 
  };
 
-var attrObj1={showIndex:0};
+var attrObj1={
+    showIndex:0
+};
 $('#galaryWindow1').setGalary(attrObj1);
-var attrObj2={showIndex:0};
+var attrObj2={
+    showIndex:0,
+    lazyLoadNum:2
+};
 $('#galaryWindow2').setGalary(attrObj2);
 
 /*-----拖拽幻灯图片组件over---------------*/
