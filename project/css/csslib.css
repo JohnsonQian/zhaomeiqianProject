@@ -727,7 +727,7 @@ padding-top: 10px;
 /*---------瀑布流组件布局over--------------*/
 
 
-/*----等比缩放图像组件start----------*/
+/*----图像随父容器等比缩放组件 start----------*/
 
 .resposityImgContainer{
   overflow: hidden;
@@ -739,7 +739,7 @@ padding-top: 10px;
   margin-right: auto;
 }
 
-/*------等比缩放组件over------*/
+/*------图像随父容器等比缩放组件 over------*/
 
 
 /*------拖拽幻灯图片组件start--------*/
@@ -757,3 +757,23 @@ padding-top: 10px;
 }
 
 /*------拖拽幻灯图片组件over--------*/
+
+/*---进度条组件start--------*/
+.progressBar{
+  border-style: groove;
+  border-color: bisque;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progressBar .progressFulfill{
+  height: 100%;
+  width: 0%;
+  background-color: blueviolet;
+   -moz-transition: width, 0.7s;
+    -o-transition: width, 0.7s;
+    -webkit-transition: width, 0.7s;
+    transition: width, 0.7s;
+} 
+
+/*---进度条组件over--------*/

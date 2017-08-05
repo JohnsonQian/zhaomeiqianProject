@@ -283,7 +283,20 @@ jQuery.fn.heightSetByWidth=function(){
 $('body').heightSetByWidth();
 /*---高度随宽度缩放组件over------*/
 
+/*---进度条组件start------*/
+jQuery.fn.initProgressBar=function(progressVal){
+     console.log("传入的参数是"+progressVal);
+     $(this).css('width', progressVal);
+};  
+jQuery.fn.setProgressBar=function(){
+     $(".progressBar").each(function(index, el) {
+        console.log("第"+index+"个progressBar的参数是："+$(el).find('.progressFulfill').attr('progressVal'))
+         $(el).find('.progressFulfill').initProgressBar($(el).find('.progressFulfill').attr('progressVal'))
+     });
+};  
+$('body').setProgressBar();
 
+/*---进度条组件over------*/
 
 
 
