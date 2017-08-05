@@ -88,7 +88,7 @@ $(window).scroll(function(event) {
 });
 /*--lazyload读取图片（当移动到附近时才加载图片） over----------------*/
 
-/*--------等比缩放组件start------------*/
+/*--------等比缩放组件start  onload函数------------*/
 jQuery.fn.setResposityImg=function(attr){
     $(".resposityImgContainer").each(function(index, el) {
        if($(el).find('.resposityImg').width()>$(el).width()){
@@ -96,10 +96,18 @@ jQuery.fn.setResposityImg=function(attr){
                 height: 'auto',
                 width: '100%'
             });
+             $(el).find('.resposityImg').css({
+                "margin-top": ($(el).height()-$(el).find('.resposityImg').height())/2
+            }); //之所以不与前面合并在一起是因为要等布局完成才能获得height
        }
     });
 }
- $(".resposityImgContainer").setResposityImg("");
+
+ window.onload = function() {  //一定要在onload函数中执行，否则无法获取图片真实宽度
+
+       $(".resposityImgContainer").setResposityImg("");
+
+}
 /*-----等比缩放组件over---------------*/
 
 /*-----拖拽幻灯图片组件start---------------*/
