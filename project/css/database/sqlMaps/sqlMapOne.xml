@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <dbName>mytestdatabase</dbName>
+    <sqlone>insert into tablea values (100,101)</sqlone>
+    <sqltwo>select * from tablea where zda = $a</sqltwo>
+    <sqlthree>delete from tablea</sqlthree>
+</root>
