@@ -50,6 +50,7 @@
 <div class="progressBar lgScreenQuarter" heightAttr=0.25>
     <div class="progressFulfill" progressVal=50%></div>
 </div>
+<a class="btn" href="#" id="btnChangeProgress">a class=btn</a>
 
 
 
@@ -57,5 +58,20 @@
 
 <script src="./jquery.min.js" ></script> 
 <script src="./jslib.js" ></script> 
+<script type="text/javascript">
+    $(document).ready(function() {
+      $("#btnChangeProgress").click(function(event) {
+         /* Act on the event */
+         console.log("点击了按钮");
+         var progress = $("div.progressFulfill").attr('progressVal');
+         $("div.progressFulfill").attr('progressVal', "100%");
+         $('body').setProgressBar();
+     });
+    })
+
+</script>
+
+
+
 </body>
 </html>
