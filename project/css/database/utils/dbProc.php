@@ -1,5 +1,5 @@
 <?php
-include 'dbUtils.php';
+include_once  $_SERVER['DOCUMENT_ROOT'].'/database/utils/dbUtils.php';
 class dbProc extends dbUtils
 {
  private $mapDotSql = '';
@@ -18,9 +18,9 @@ class dbProc extends dbUtils
         if(isset($paraArr[1])){
             $this->qryArgArr = $paraArr[1];
         }
-    }else if()is_string($paraArr){
-        $this->log =$this->log.'----dbProc construct para:'.$paraArr[0]."\n";
-        $this->mapDotSql = $paraArr[0];
+    }else if(is_string($paraArr)){
+        $this->log =$this->log.'----dbProc construct para:'.$paraArr."\n";
+        $this->mapDotSql = $paraArr;
     }else{
         die("dbProc construct error: Args not array or String!");
     }
@@ -42,7 +42,7 @@ class dbProc extends dbUtils
 
  private function getSqlFromXML(){
     $this->log = $this->log."----getSqlFromXML()\n";
-    $sqlMapXmlSrc = '../sqlMaps/'.$this->mapName.'.xml';
+    $sqlMapXmlSrc = $_SERVER['DOCUMENT_ROOT'].'/database/sqlMaps/'.$this->mapName.'.xml';
     $sqlMap = TypeConvUtils::getObjFromXML($sqlMapXmlSrc);
     $this->dbName = $sqlMap->dbName;
     $sqlid = $this->sqlId;
@@ -98,6 +98,7 @@ public function getLog(){
 }
 
 }
+
 /*
 使用方法：
 $dbp = new dbProc(['sqlMapOne.sqltwo',['$a'=>1,'$b'=>2]]);

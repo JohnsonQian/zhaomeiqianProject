@@ -2,16 +2,16 @@
 /**
 * 数据库操作类
 */
-include 'TypeConvUtils.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/database/utils/TypeConvUtils.php';
 abstract class dbUtils
 {
-    const DBCONF_URL = '../conf/dbConf.xml';
     protected $conn = null;
     public $log = "";
     protected function dbConnect()
     {
+        $DBCONF_URL = $_SERVER['DOCUMENT_ROOT'].'/database/conf/dbConf.xml';
         # code...
-        $dbConf = TypeConvUtils::getObjFromXML(self::DBCONF_URL);
+        $dbConf = TypeConvUtils::getObjFromXML($DBCONF_URL);
         $dbuser = $dbConf->loginUsers->rootUser->userName;
         $dbpass = $dbConf->loginUsers->rootUser->pwd;
         $dbhost = $dbConf->host;

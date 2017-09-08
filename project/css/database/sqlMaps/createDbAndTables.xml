@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <dbName>projectDatabase</dbName>
+    <createLogintable>create table LOGIN_TABLE(USER_ID mediumint unsigned primary key auto_increment,PWD varchar(35) not null,USER_NAME varchar(25) not null unique)</createLogintable>
+    <createLocationinfotable>create table LOCATION_INFO(LOCATION_ID mediumint unsigned primary key auto_increment,CITY_ID mediumint unsigned not null)</createLocationinfotable>
+    <createuserinfotable>create table USER_INFO(USER_ID mediumint unsigned primary key,TEL varchar(15),LOCATION_ID mediumint unsigned,index(USER_ID),index(LOCATION_ID),constraint user_id_login_table_user_id foreign key(USER_ID) references LOGIN_TABLE(USER_ID))
+</createuserinfotable>
+<createDishDetailTable>create table DISH_DETAIL(DISH_ID mediumint unsigned primary key)</createDishDetailTable>
+<createDishInfoTable>create table DISH_INFO(DISH_ID mediumint unsigned auto_increment,DISH_NAME varchar(50) not null,OWNER_ID mediumint unsigned,DISH_IMGS varchar(200),prize float(4,1) not null,LOCATION_ID mediumint unsigned,IS_OFFER varchar(2) default '1',index(OWNER_ID),index(DISH_ID),constraint dish_id_dish_detail_dish_id foreign key(DISH_ID) references DI
+SH_DETAIL(DISH_ID),constraint owner_id_user_info_user_id foreign key(OWNER_ID) references USER_INFO(USER_ID))</createDishInfoTable>
+
+</root>
