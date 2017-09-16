@@ -24,7 +24,7 @@ abstract class dbUtils
     }
     abstract function exec();
     protected function selectdb($dbName){
-        mysqli_select_db($thhis->conn,$dbName);
+        mysqli_select_db($this->conn,$dbName);
     }
     protected function destroyConn(){
         if($this->conn){
