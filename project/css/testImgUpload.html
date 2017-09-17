@@ -13,7 +13,7 @@
     
 </div>
 <img id="i">
-
+<button id="btn"></button>
 
 
 
@@ -25,6 +25,14 @@
 
 </script>
 <script type="text/javascript">
+$(document).ready(function() {
+    $('#btn').click(function(event) {
+        /* Act on the event */
+        console.log("already click the butoon");
+        console.log($('#i').height());
+    });
+});
+
  function readAsDataURL(){ 
     var res = $('#fileId');
     var file = res[0]['files'][0];
@@ -45,9 +53,8 @@
         var result=$("#i")[0];  
         result.src=this.result;  
         var jqimg = $(result);
-        console.log(jqimg);
-        console.log(jqimg[0].width);
-        console.log(jqimg.height());
+        console.log("before------------");
+       console.log($('#i').height());
     }  
 }
 
