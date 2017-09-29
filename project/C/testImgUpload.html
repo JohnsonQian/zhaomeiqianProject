@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <title>测试网页2</title>
+    <link rel="stylesheet" type="text/css" href="./csslib.css">
+   <style type="text/css">
+    .displayNone{
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<a class="btn" id="addPicBtn" href="javascript:void(0);">添加图片</a>
+<div></div>
+<input type="file" class="displayNone" id="fileId"  name="fileId" value="上传图片" hidefocus="false" onchange="readAsDataURL(this.files,this.id);"/>
+<div id="upLoadPicHidArea" class="displayNone"></div>
+<div id="upLoadPicShowArea" style="width: 100%"></div>
+<a class="btn" id="upLoadPicBtn" href="javascript:void(0);">上传</a>
+
+<script src="./jquery.min.js" ></script> 
+<script src="./jslib.js" ></script> 
+<script type="text/javascript">
+var sqinzi = 0;
+var image = null;
+var picdataUrl = new Array();
+var picId = 0;
+var noPicUploadFlag = true;
+ function readAsDataURL(files,id){
+    var file = files[0];
+    if(file==undefined){
+        return;
+    }
+    var filesize = file.size;   //图片大小，单位为B
+    var inzi = filesize/30000;  //压缩到30kB左右
+    var type = file.type;
+    sqinzi = Math.sqrt(inzi);   //算出缩放因子
+    if(typeof FileReader=='undefined'){  
+        alert("很抱歉，您的浏览器不支持图片上传功能"); 
+        return false;   
+    }  
+    if(-1 == type.indexOf('image/')){
+        alert("请选择图片"); 
+        return false;  
+    }  
+    var reader=new FileReader();  
+    reader.readAsDataURL(file);  
+    reader.onload=function(f){ 
+        image = new Image();    //原图
+        image.onload = function(e){
+            var h = image.height/sqinzi;
+            var w = image.width/sqinzi;
+            var Cnv = document.createElement("canvas");
+            var div = document.createElement('div');
+            var Cntx = Cnv.getContext('2d');//获取2d编辑容器
+            Cnv.width = w;
+            Cnv.height = h;
+            $(div).attr({
+                class: 'smScreenQuarter midScreenQuarter resposityImgContainer',
+                heightAttr: 1
+            });
+            Cntx.drawImage(image, 0, 0,w,h);
+            picdataUrl[picId] = Cnv.toDataURL("image/jpeg");
+            $(image).attr('class', 'resposityImg');
+            $(div).append(image);
+            $(div).append('<a class="redCloseX" redCloseId='+picId+' href="#1" onclick="redCloseClickHandler(this)">×</a>');
+            $(div).append('<div class="progressBar" heightAttr=0.1><div class="progressFulfill" progressVal=0%></div></div>');
+            $('#upLoadPicShowArea').append(div);
+            $('body').heightSetByWidth();  //由于是新加了一个resposityImgContainer，手动调用高度随宽度缩放组件初始化函数
+            $(".resposityImgContainer").setResposityImg("");    //手动调用自适应图像组件初始化函数
+            picId++;
+        };
+        image.src=this.result;
+    }  
+}
+function redCloseClickHandler(a){
+    var arrId = $(a).attr('redCloseId');
+    $(a).parent('.resposityImgContainer').fadeOut('100', function() {
+        picdataUrl[arrId] = '';
+        $(a).parent('.resposityImgContainer').remove();
+    });
+}
+
+jQuery(document).ready(function($) {
+    $('#addPicBtn').click(function(event) {
+        /* Act on the event */
+        $('#fileId').trigger("click");
+    });
+    $('#upLoadPicBtn').click(function(event) {
+        /* Act on the event */
+        // sendToBackground();
+        upLoad(0);
+
+        if(noPicUploadFlag){
+            alert("请选择图片");
+            return;
+        }
+    });    
+});
+
+
+
+function upLoad(index){
+    if(index>=picdataUrl.length) return;
+    if(picdataUrl[index]==''){
+        upLoad(index+1);
+        return;
+    }
+    noPicUploadFlag = false;
+    var formData = new FormData();
+            formData.append("file" , picdataUrl[index]);
+            console.log(index);
+            $.ajax({  
+                url: "./imgReceiver.php",  
+                type: 'POST',  
+                data: formData,
+                processData: false,//用来回避jquery对formdata的默认序列化，XMLHttpRequest会对其进行正确处理  
+                contentType: false,//设为false才会获得正确的conten-Type  
+                xhr: function() { //用以显示上传进度  
+                var xhr = $.ajaxSettings.xhr();  
+                if (xhr.upload) { 
+                    console.log(xhr);
+                    xhr.upload.addEventListener('progress', function(e) { 
+                    console.log(".redCloseX[redcloseid="+index+"]");
+                    $(".redCloseX[redcloseid="+index+"]").next('.progressBar').find('.progressFulfill').attr('progressval', e.loaded/e.total*100+'%');
+                    $('body').setProgressBar();
+                    }, false);  
+                }  
+                return xhr;  
+                },  
+            async: true
+            }).then(function(data) {  
+                console.log('after ajax');
+                // if (data.IsSuccessful == false) {  
+                //     alert('上传失败');  
+                // }else {  
+                //     alert('上传成功');  
+                // }  
+                upLoad(index+1);
+            }); 
+}
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <PROC000001>
+        <actionSrc>doService/actions/</actionSrc>
+        <actionName>proc000001Handler</actionName>
+    </PROC000001>
+   
+
+
+
+
+</root>

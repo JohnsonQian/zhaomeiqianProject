@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <dbName>projectDatabase</dbName>
+    <COM0>-------------检查用户名是否注册过，判断返回array的size是否大于0---------------</COM0>
+    <checkUserNameIfReg>select * from login_table where USER_NAME='$user_name'</checkUserNameIfReg>
+    <COM1>-------------创建用户所用sql----------------</COM1>
+    <insertLoginTable>insert into login_table(PWD,USER_NAME) values ('$pwd','$name')</insertLoginTable>
+    <getUserId>select USER_ID from login_table where USER_NAME='$user_name'</getUserId>
+    <insertUserInfotable>insert into user_info(USER_ID,TEL,LOCATION_ID) values ($user_id,$tel,$location_id)</insertUserInfotable>
+   
+
+
+
+
+</root>

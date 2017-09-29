@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <title>测试网页</title>
+    <link rel="stylesheet" type="text/css" href="./csslib.css">
+</head>
+<body>
+<!-- 按钮组件 csslib.css-->
+<!--<a class="btn" href="#">a class=btn</a>-->
+
+<!-- 幻灯组件 csslib.css-->
+<ul class="slideshow">
+    <li class="slideitem"></li>
+    <li class="slideitem"></li>
+</ul>
+
+<!-- 铺满父容器基于backgroundImg的遮罩图片组件 csslib.css -->
+ <ul class="hiddenTextPic">
+    <li class="overlay"><div class="hiddenText">基于background的遮罩图片，撑满父容器，这里是整个屏幕宽度高度，可能会变形</div></li>
+</ul>
+
+<!-- 基于img的遮罩图片组件 csslib.css -->
+<ul class="baseOnImgHiddenTextPic">
+    <img class="hiddenTextPicImg" src="./img/slideshowimg/bg1.jpg">
+    <li class="overlay"><div class="hiddenText">基于img的遮罩图片，父容器会被撑开，图片等比缩放不会变形</div></li>
+</ul>
+
+
+<!--顶部导航菜单组件 csslib.css    jslib.js-->
+<ul class="topMenu">
+    <li class="topMenuItem">
+        <div class="topMenuItemTitle">栏目一</div>
+        <ul class="subTopMenu">
+            <li>1.1</li>
+            <li>1.2</li>
+            <li>1.3</li>
+            <li>1.4</li>
+        </ul>
+    </li>
+    <li class="topMenuItem">
+        <div class="topMenuItemTitle">栏目二</div>
+        <ul class="subTopMenu">
+            <li>2.1</li>
+            <li>2.2</li>
+            <li>2.3</li>
+        </ul>
+    </li>
+    <li class="topMenuItem">
+        <div class="topMenuItemTitle">栏目三</div>
+        <ul class="subTopMenu">
+            <li>3.1</li>
+            <li>3.2</li>
+        </ul>
+    </li>
+</ul>
+
+<!--加载动画组件 csslib.css-->
+<!-- <div class="loadImgBg">
+    <div class="loadImg">
+        
+    </div>
+</div> -->
+
+<!-- 开关组件 csslib.css-->
+  <div class="switch">
+    <input id="switchId" type="checkbox" hidden="hidden"/>
+    <label for="switchId"></label>
+  </div>
+开关组件
+<!--汉堡包菜单组件 csslib.css jslib.js-->
+<div class="burgerMenuIconContainer">
+    <a class="burgerMenuIcon"  href="#burgerPopMenu">
+        <div class="stick stick-1"></div>
+        <div class="stick stick-2"></div>
+        <div class="stick stick-3"></div>
+    </a>
+</div>
+<div id="burgerPopMenu" class="popWindowOverlay">
+  <div class="popWindow">
+    <a class="redCloseX" href="#1">×</a>
+    <div>
+    <h2>弹出菜单</h2>
+      <p>内容就当是正常的布局方式，甚至可以是另一个页面</p>
+      <p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+    </div>
+  </div>
+</div>
+
+<!--弹出框组件 csslib.css-->
+<a class="btn" href="#popWindow1">触发弹出框</a>
+<div id="popWindow1" class="popWindowOverlay">
+  <div class="popWindow">
+    <a class="redCloseX" href="#1">×</a>
+    <div>
+    <h2>标题</h2>
+      <p>内容就当是正常的布局方式，甚至可以是另一个页面</p>
+      <p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+    </div>
+  </div>
+</div>
+
+<!-- 自适应布局标签 csslib.css-->
+<!-- 父容器100%        父容器50%      父容器1/4          父容器3/4
+注意是父容器而不是屏幕宽度，如果直接是body下子标签就是屏幕宽度-->
+<!--smScreenFull    smScreenHalf    smScreenQuarter  smScreenThreeQuarter     小于992px-->
+<!--lgScreenFull    lgScreenHalf    lgScreenQuarter  smScreenThreeQuarter     992px-1200px-->
+<!--midScreenFull   midScreenHalf   midScreenQuarter smScreenThreeQuarter     大于1200px-->
+<!-- <div class="smScreenFull midScreenHalf lgScreenQuarter">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/slideshowimg/bg1.jpg">
+        <li class="overlay"><div class="hiddenText">smScreenFull midScreenHalf lgScreenQuarter</div></li>
+    </ul>
+</div>
+<div class="smScreenFull midScreenFull lgScreenFull">
+<div class="smScreenQuarter midScreenQuarter lgScreenQuarter">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/slideshowimg/bg1.jpg">
+        <li class="overlay"><div class="hiddenText">smScreenFull midScreenHalf lgScreenQuarter</div></li>
+    </ul>
+</div>
+</div>
+<div class="smScreenFull midScreenFull lgScreenFull">
+<div class="smScreenQuarter midScreenQuarter lgScreenQuarter">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/slideshowimg/bg1.jpg">
+        <li class="overlay"><div class="hiddenText">smScreenFull midScreenHalf lgScreenQuarter</div></li>
+    </ul>
+</div>
+</div> -->
+
+<!-- 瀑布布局组件 csslib.css  jslib.js -->
+<div class="waterflowContainer">
+<div class="waterflowItem">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/waterflowImg/1.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+    </div>
+<div class="waterflowItem">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/waterflowImg/2.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+<div class="waterflowItem">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/waterflowImg/3.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+<div class="waterflowItem">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/waterflowImg/4.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+<div class="waterflowItem">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/waterflowImg/5.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+<div class="waterflowItem">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/waterflowImg/6.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+<div class="waterflowItem">
+    <ul class="baseOnImgHiddenTextPic">
+        <img class="hiddenTextPicImg" src="./img/waterflowImg/7.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+</div>
+
+<!-- lazyload组件  jslib.js -->
+<div class="lgScreenFull">
+    <ul class="baseOnImgHiddenTextPic ">
+        <img class="hiddenTextPicImg" lazyLoadSrc="./img/waterflowImg/7.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+<div class="lgScreenFull">
+    <ul class="baseOnImgHiddenTextPic ">
+        <img class="hiddenTextPicImg" lazyLoadSrc="./img/waterflowImg/8.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+<div class="lgScreenFull">
+    <ul class="baseOnImgHiddenTextPic ">
+        <img class="hiddenTextPicImg" lazyLoadSrc="./img/waterflowImg/9.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+<div class="lgScreenFull">
+    <ul class="baseOnImgHiddenTextPic ">
+        <img class="hiddenTextPicImg" lazyLoadSrc="./img/waterflowImg/10.jpg">
+        <li class="overlay"><div class="hiddenText">赵亚想 梅亚勇 钱俊生</div></li>
+    </ul>
+</div>
+
+
+
+
+
+<script src="./jquery.min.js" ></script> 
+<script src="./jslib.js" ></script> 
+</body>
+</html>

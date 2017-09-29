@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <title>测试网页2</title>
+    <link rel="stylesheet" type="text/css" href="./csslib.css">
+</head>
+<body>
+<!-- 拖拽图片组件 csslib.css  jslib.js -->
+<!-- <div class="outside smScreenFull midScreenFull lgScreenFull contentCenter">
+    <div id="galaryWindow1" class="galaryWindow smScreenQuarter midScreenQuarter lgScreenQuarter">
+        <img class="galaryItem" src="./img/waterflowImg/1.jpg">
+         <img class="galaryItem" src="./img/waterflowImg/2.jpg">
+          <img class="galaryItem" src="./img/waterflowImg/3.jpg">
+    </div>
+</div>
+<div class="outside smScreenFull midScreenFull lgScreenFull contentCenter">
+    <div id="galaryWindow2" class="galaryWindow smScreenQuarter midScreenQuarter lgScreenQuarter">
+        <img class="galaryItem" src="./img/waterflowImg/5.jpg">
+        <img class="galaryItem" src="./img/waterflowImg/6.jpg">
+        <img class="galaryItem" src="./img/waterflowImg/7.jpg">
+        <img class="galaryItem" galaryItemLazyLoadSrc="./img/waterflowImg/8.jpg">
+        <img class="galaryItem" galaryItemLazyLoadSrc="./img/waterflowImg/9.jpg">
+        <img class="galaryItem" galaryItemLazyLoadSrc="./img/waterflowImg/10.jpg">
+    </div>
+</div> -->
+
+
+<!-- 高度随宽度缩放组件  jslib.js -->
+<!-- <div class="smScreenFull lgScreenQuarter" heightAttr=0.5>
+    
+</div>
+<div class="smScreenFull lgScreenFull" heightAttr=0.2>
+    
+</div> -->
+
+
+
+<!-- 图像随父容器等比缩放组件 csslib.css  jslib.js -->
+<!-- <div class="lgScreenQuarter smScreenFull resposityImgContainer" heightAttr=2>
+    <img class="resposityImg" src="./img/waterflowImg/5.jpg">
+</div> -->
+
+
+<!-- 进度条组件 csslib.css-->
+<div class="progressBar lgScreenQuarter" heightAttr=0.25>
+    <div class="progressFulfill" progressVal=0%></div>
+</div>
+<a class="btn" href="#" id="btnChangeProgress">a class=btn</a>
+
+
+
+
+
+<script src="./jquery.min.js" ></script> 
+<script src="./jslib.js" ></script> 
+<script type="text/javascript">
+    $(document).ready(function() {
+      $("#btnChangeProgress").click(function(event) {
+         /* Act on the event */
+         console.log("点击了按钮");
+         var progress = $("div.progressFulfill").attr('progressVal');
+         $("div.progressFulfill").attr('progressVal', "100%");
+         $('body').setProgressBar();
+     });
+    })
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,779 @@
+html {  /*撑开最外层页面*/
+    width: 100%;
+    height: 100%;
+}
+body { /*撑开最外层页面*/
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;  /*水平不可滚动，垂直可上下滚动*/
+    overflow-y:auto;
+}
+
+.contentCenter{   /*内容居中*/
+text-align: center;
+}
+
+/*=========================基本样式 over====================================*/
+
+
+/*========================基本组件start==============================*/
+/*-------------------------按钮start--------------------------------*/
+/*使用方式 <a class="btn"/>*/
+.btn {
+    background-color: transparent;  /*背景色透明 */
+    color: #3496d8;  /*按钮内的字体为蓝色*/
+    font-size: 16px; 
+    font-weight: 600;
+    -moz-border-radius: 2px; /*边角弧度*/
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    display: inline-block;
+    /*text-transform: uppercase; */
+    border: 1px solid #3496d8; /*边框粗细以及边框颜色为蓝色*/
+    text-decoration: none; /*取消连接样式下划线*/
+    padding: 2px 5px 2px 5px;
+}
+.btn:hover, .btn:focus {
+    background-color: #3496d8; /*背景为蓝色*/
+    color: #fff;  /*字体全白*/
+    -moz-transition: background-color, color, 0.3s; /*设置过渡时间为0.3秒*/
+    -o-transition: background-color, color, 0.3s;
+    -webkit-transition: background-color, color, 0.3s;
+    transition: background-color, color, 0.3s;
+}
+
+/*----------------按钮over---------------------------------------*/
+
+/*-----------------幻灯start-------------------------------------*/
+/*使用方式<ul class="slideshow">*/
+/*<li class="slideitem">*/
+.slideshow,
+.slideshow:after {
+    padding: 0px;
+    margin: 0px;
+    position: relative;  /*占满外部容器*/
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;/*如果不设置整个，当内部图片大于外部容器时会出现滚动条*/
+}
+
+.slideshow .slideitem {
+    width: 100%;
+    height: 100%;- 
+    top: 0px;
+    left: 0px; /*铺满外部容器*/
+    position: absolute; /*外部容器是relative，里面是absolute，相当于两个图片叠一块*/
+    color: transparent;
+    background-size: cover;  /*覆盖外部容器，图像会形变，如果不希望变形就注释*/
+    background-repeat: none;  /*图片不repeat*/
+    opacity: 0; /*初始能见度为0，不可见*/
+    z-index: 0;
+    -webkit-animation: imageAnimation 18s linear infinite 0s; /*整个补间动画长18秒，线性，循环*/
+    -moz-animation: imageAnimation 18s linear infinite 0s;
+    -o-animation: imageAnimation 18s linear infinite 0s;
+    -ms-animation: imageAnimation 18s linear infinite 0s;
+    animation: imageAnimation 18s linear infinite 0s;
+}
+.slideshow .slideitem:nth-child(1) { background-image: url(./img/slideshowimg/bg1.jpg) }
+.slideshow .slideitem:nth-child(2) {
+    background-image: url(./img/slideshowimg/bg2.jpg);
+    -webkit-animation-delay: 9s;
+    -moz-animation-delay: 9s;
+    -o-animation-delay: 9s;
+    -ms-animation-delay: 9s;
+    animation-delay: 9s;
+}
+/*定义动画*/
+@-webkit-keyframes imageAnimation { 
+    0% {
+        opacity: 0;
+        
+    }
+    18% {
+        opacity: 1;
+        -webkit-transform: scale(1.05);
+        
+    }
+    77% {
+        opacity: 1;
+        -webkit-transform: scale(1.1);
+    }
+    83% {
+        opacity: 0;
+        -webkit-transform: scale(1.1);
+    }
+    100% { opacity: 0 }
+}
+@-moz-keyframes imageAnimation { 
+    0% {
+        opacity: 0;
+        -moz-animation-timing-function: ease-in;
+    }
+    18% {
+        opacity: 1;
+        -moz-transform: scale(1.05);
+        -moz-animation-timing-function: ease-out;
+    }
+    77% {
+        opacity: 1;
+        -moz-transform: scale(1.1);
+    }
+    83% {
+        opacity: 0;
+        -moz-transform: scale(1.1);
+    }
+    100% { opacity: 0 }
+}
+@-o-keyframes imageAnimation { 
+    0% {
+        opacity: 0;
+        -o-animation-timing-function: ease-in;
+    }
+    18% {
+        opacity: 1;
+        -o-transform: scale(1.05);
+        -o-animation-timing-function: ease-out;
+    }
+    77% {
+        opacity: 1;
+        -o-transform: scale(1.1);
+    }
+    83% {
+        opacity: 0;
+        -o-transform: scale(1.1);
+    }
+    100% { opacity: 0 }
+}
+@-ms-keyframes imageAnimation { 
+    0% {
+        opacity: 0;
+        -ms-animation-timing-function: ease-in;
+    }
+    18% {
+        opacity: 1;
+        -ms-transform: scale(1.05);
+        -ms-animation-timing-function: ease-out;
+    }
+    77% {
+        opacity: 1;
+        -ms-transform: scale(1.1);
+    }
+    83% {
+        opacity: 0;
+        -ms-transform: scale(1.1);
+    }
+    100% { opacity: 0 }
+}
+@keyframes imageAnimation { 
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+    18% {
+        opacity: 1;
+        transform: scale(1.05);
+        animation-timing-function: ease-out;
+    }
+    77% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    83% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    100% { opacity: 0 }
+}
+
+/*-----------------幻灯over-------------------------------------*/
+
+/*-----------图片，鼠标上去显示遮罩层start-------------------------*/
+/*他是基于background属性的，是属性而不是image标签，所以要靠容器来定义大小，然后自己去铺满容器*/
+.hiddenTextPic,
+.hiddenTextPic:after {
+    background-size: cover;  
+    background-repeat: round;  /*超出部分会截取用none，如果不截取要形变就使用round*/
+    background-image: url(./img/slideshowimg/bg1.jpg);
+    z-index: 0;
+    padding: 0px;
+    margin: 0px;
+    position: relative;  /*占满外部容器*/
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;/*如果不设置整个，当内部图片大于外部容器时会出现滚动条*/
+}
+
+.hiddenTextPic .overlay{ /*之所以使用附加层是因为父标签的opacity会继承到子标签内，所以overlay使用background的rgba第四个透明度，这个不会继承到子标签*/
+     padding: 0px;
+    margin: 0px;
+    position: relative;  /*占满外部容器*/
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background:rgba(56, 56, 56, 0.68);
+    opacity: 0;     /*初始幕布为不可见，所以子标签继承也为不可见*/
+
+    -moz-transition: opacity, 0.3s;  /*鼠标移开时设置持续隐藏过渡时间*/
+    -o-transition: opacity, 0.3s;
+    -webkit-transition: opacity, 0.3s;
+    transition: opacity, 0.3s;
+}
+
+.hiddenTextPic:hover .overlay{
+    opacity: 1;     /*当鼠标移上去后中间层显示，整个过程持续0.3秒*/
+    -moz-transition: opacity, 0.3s;
+    -o-transition: opacity, 0.3s;
+    -webkit-transition: opacity, 0.3s;
+    transition: opacity, 0.3s;
+}
+
+.hiddenTextPic .hiddenText{
+    padding: 0px;
+    margin: 0px;
+    position: absolute;  /*占满外部容器*/
+    width: 100%;
+    height: 100%;
+    text-align: center;    /*初始位置是在下面1.5倍处，当hover后上移1倍，因此字体就在中间*/
+    
+
+     -moz-transform: translate3d(0, 150%, 0);
+    -ms-transform: translate3d(0, 150%, 0);
+    -webkit-transform: translate3d(0, 150%, 0);
+    transform: translate3d(0, 150%, 0);
+
+    -moz-transition: all, 0.3s;  /*设置移动时间*/
+    -o-transition: all, 0.3s;
+    -webkit-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
+
+.hiddenTextPic:hover .hiddenText{
+    font-size: xx-large;
+    color: cornsilk;
+
+    -moz-transform: translate3d(0, 50%, 0);
+    -ms-transform: translate3d(0, 50%, 0);
+    -webkit-transform: translate3d(0, 50%, 0);
+    transform: translate3d(0, 50%, 0);
+
+    -moz-transition: all, 0.3s;
+    -o-transition: all, 0.3s;  /*设置移动时间*/
+    -webkit-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
+
+/*-----------图片，鼠标上去显示遮罩层over-------------------------*/
+
+/*-----------基于img的遮罩图片start-------------------------*/
+.baseOnImgHiddenTextPic{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.baseOnImgHiddenTextPic .hiddenTextPicImg{
+  width: 100%;
+  display: block;
+}
+.baseOnImgHiddenTextPic .overlay{
+position: absolute;
+width: 100%;
+height: 100%;
+top: 0px;
+left: 0px;
+opacity: 0;
+background:rgba(56, 56, 56, 0.68);
+-moz-transition: opacity, 0.3s;  /*设置移动时间*/
+    -o-transition: opacity, 0.3s;
+    -webkit-transition: opacity, 0.3s;
+    transition: opacity, 0.3s;
+}
+
+.baseOnImgHiddenTextPic .overlay .hiddenText{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: x-large;
+    color: cornsilk;
+    position: absolute;
+
+    -moz-transform: translate3d(0, 150%, 0);
+    -ms-transform: translate3d(0, 150%, 0);
+    -webkit-transform: translate3d(0, 150%, 0);
+    transform: translate3d(0, 150%, 0);
+
+    -moz-transition: all, 0.3s;  /*设置移动时间*/
+    -o-transition: all, 0.3s;
+    -webkit-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
+
+.baseOnImgHiddenTextPic:hover .overlay{
+opacity: 1;
+    -moz-transition: opacity, 0.3s;  /*设置移动时间*/
+    -o-transition: opacity, 0.3s;
+    -webkit-transition: opacity, 0.3s;
+    transition: opacity, 0.3s;
+}
+
+.baseOnImgHiddenTextPic:hover .overlay .hiddenText{
+    -moz-transform: translate3d(0, 50%, 0);
+    -ms-transform: translate3d(0, 50%, 0);
+    -webkit-transform: translate3d(0, 50%, 0);
+    transform: translate3d(0, 50%, 0);
+
+    -moz-transition: all, 0.3s;  /*设置移动时间*/
+    -o-transition: all, 0.3s;
+    -webkit-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
+/*-----------基于img的遮罩图片over-------------------------*/
+
+/*-----------顶部导航菜单start-------------------------*/
+.topMenu,.subTopMenu{
+    padding-left: 0px;
+    list-style-type:none;
+}
+.topMenu{
+position: fixed;
+top: 0px;
+width: 100%;
+padding-top: 10px;
+padding-bottom: 10px;
+margin-top: 0px;
+margin-bottom: 0px;
+/*background-color: rgba(247,247,247,0.9); 这部分放在下拉时候添加导航烂背景色*/
+
+-moz-transition: all, 0.7s;
+-o-transition: all, 0.7s;
+-webkit-transition: all, 0.7s;
+transition: all, 0.7s;
+
+ /*当需要的时候可以给菜单加上背景色，以免菜单不清晰*/
+}
+.topMenuItem{
+    font-size: x-large;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    position: relative;
+}
+.subTopMenu{
+  font-size: large;
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+  -moz-transition: all, 0.7s;
+    -o-transition: all, 0.7s;
+    -webkit-transition: all, 0.7s;
+    transition: all, 0.7s;
+}
+.topMenuItemTitle,.subTopMenu li{
+cursor:pointer;
+}
+.subTopMenu li{
+padding-top: 10px;
+}
+.topMenuItemTitle:hover+.subTopMenu,.subTopMenu:hover{
+    opacity: 1;
+   position: relative;  /*占用文档流，如果前面菜单背景色加上的话必须要占用文档流才能把背景色往下撑开*/
+  -moz-transition: all, 0.7s;
+    -o-transition: all, 0.7s;
+    -webkit-transition: all, 0.7s;
+    transition: all, 0.7s;
+}
+/*-----------顶部导航菜单over-------------------------*/
+
+
+/*-----------加载动画start----------------------------*/
+.loadImgBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.loadImg {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;               /*决定整个试图的大小，即最外面圆的大小，里面两个圆都是相对的，不用设置*/
+    height: 150px;
+    margin: -75px 0 0 -75px;  /*绝对居中*/
+    border-radius: 50%;
+    border: 3px solid transparent;  
+    border-top-color: #9370DB;  /*边框透明，只有上边框显示，结合radius即变成上1/4个圆弧*/
+    -webkit-animation: spin 2s linear infinite; 
+    animation: spin 2s linear infinite; /*2秒转一圈*/
+}
+.loadImg:before {   /*伪元素，大正方形里面定义两个小正方形相当于
+                        *<div class="loadImg">
+                        *   :before的内容
+                        *   原本内容
+                        *   :after的内容
+                        *<div>
+                        */
+
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #BA55D3;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;      /*执行spin动画，下面定义，线性执行，耗时3秒*/
+}
+.loadImg:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #FF00FF;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;        /*1.5秒*/
+}
+/*动画定义，转一圈*/
+@-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+/*-----------加载动画over-------------------*/
+
+/*----------开关组件start----------------*/
+.switch label {         /*组件里面的input是隐藏的，只是想借他存放选中与否的状态，lable才是按钮样式*/
+  display: block;
+  width: 44px;
+  height: 16px;
+  border-radius: 10px;
+  background: rgba(189, 195, 199, 0.5);
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: background 350ms ease;        /*背景色渐变*/
+  transition: background 350ms ease;
+}
+.switch label:after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #bdc3c7; /*颜色为灰色*/
+  position: absolute;
+    -webkit-transform: translate3d(0, -50%, 0);  /*未选中状态的3d座标，圆心居中必须先把圆上移圆高度的50%*/
+          transform: translate3d(0, -50%, 0);
+  top: 50%;                                      /*下移父元素高度的50%*/
+  -webkit-transition: all 120ms linear;
+  transition: all 120ms linear;
+}
+.switch input:checked + label {              /*选中时变为浅紫色*/
+  background: rgba(142, 68, 173, 0.6);
+}
+
+.switch input:checked + label:after {       /*选中状态的3d座标*/
+  background: #8e44ad;
+  -webkit-transform: translate3d(100%, -50%, 0);
+          transform: translate3d(100%, -50%, 0);
+}
+/*----------开关组件over----------------*/
+
+
+/*-----------汉堡包菜单组件start------------*/
+.burgerMenuIconContainer {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+.burgerMenuIcon{
+  display: block;
+  cursor: pointer;
+}
+
+.stick {
+  width: 50px;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color:  #9370DB;
+  cursor: pointer;
+
+}
+.stick:last-child {
+  margin-bottom: 0px;
+}
+
+.burgerMenuIcon.open .stick-1{
+    animation: stick-1-open .6s linear forwards;
+}
+
+.burgerMenuIcon.open .stick-2{
+    animation: stick-2-open .6s linear forwards;
+}
+.burgerMenuIcon.open .stick-3{
+    animation: stick-3-open .6s linear forwards;
+}
+
+@keyframes stick-1-open {
+  80%  {background-color: #9370DB; transform: translate3d(0px, 18px,0px) rotate(0deg);}
+  100% {background-color: #ff1456; transform: translate3d(0px, 18px,0px) rotate(45deg);}
+}
+
+@keyframes stick-2-open {
+  0%  {opacity: 1;}
+  80% {opacity: 0;}
+   100% {opacity: 0;}
+}
+
+@keyframes stick-3-open {
+  80%  {background-color: #9370DB; transform: translate3d(0px, -18px,0px) rotate(0deg);}
+  100% {background-color: #ff1456; transform: translate3d(0px, -18px,0px) rotate(-45deg);}
+}
+
+/*-----------汉堡包菜单组件over------------*/
+
+
+/*---------弹出框组件start-------href触发----------------*/
+.popWindowOverlay {     /*幕布container定义*/
+    z-index: 10;
+  visibility: hidden;/*未被激活时不可见*/
+      top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;/*铺满整个页面,fixed脱离文档流*/
+  background: rgba(0, 0, 0, 0.7);/*颜色基本全黑*/
+  opacity: 0;/*未被激活时不可见，这个属性是会继承到子标签中的，而且子标签无法更改*/
+  transition: opacity 0.5s;  /*不可见到可见过渡时长为半秒*/
+
+}
+.popWindowOverlay:target {           /*当点击按钮被激发时可见，子标签会继承opacity*/
+  visibility: visible;
+  opacity: 1;
+}
+
+.popWindow {        /*弹出框定义*/
+    max-width: 70%; /*根据内容决定框的大小，最大为70%的屏幕宽度*/
+  position: relative;
+  margin: auto;     /*div占用一行，用margin auto均分左右margin*/
+  padding: 1.5rem;  /*设置内边距*/
+  background: #fff;/*背景色为白色*/
+  border-radius: 15px; /*弹出框弧度*/
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  transition: all 0.5s;
+  transform: translateY(0%) scale(1.0); /*初始状态位置和大小*/
+  
+}
+.popWindowOverlay:target > .popWindow {
+  transform: translateY(30%) scale(0.9); /*激发状态：下移，略微缩小，过渡时间0.5秒*/
+  transition: all 0.5s;
+}
+.redCloseX {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 22px;
+  height: 22px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 20px;
+  line-height: 21px;
+  color: lightslategrey;
+  background-color: lightgrey;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  transition: .25s;
+}
+.redCloseX:hover {
+  background-color: tomato;
+  color: white;
+}
+/*---------弹出框over-----------------------*/
+/*---------自适应布局标签 start-----------------------*/
+
+@media only screen and (min-width : 768px) { /*当屏幕宽度像素大于768时*/
+    .smScreenFull{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    .smScreenHalf{
+        width: 49%;
+        position: relative;
+        display: inline-block;
+    }
+    .smScreenQuarter{
+        width: 24%;
+        position: relative;
+        display: inline-block;
+    }
+    .smScreenThreeQuarter{
+        width: 74%;
+        position: relative;
+        display: inline-block;
+    }
+    
+    
+}
+
+/* 中等设备显示器 */
+@media only screen and (min-width : 992px) {  /*当屏幕宽度像素大于992时*/
+    
+    .midScreenFull{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    .midScreenHalf{
+        width: 49%;
+        position: relative;
+        display: inline-block;
+    }
+    .midScreenQuarter{
+        width: 24%;
+        position: relative;
+        display: inline-block;
+    }
+    .midScreenThreeQuarter{
+        width: 74%;
+        position: relative;
+        display: inline-block;
+    }
+    
+}
+
+/* 大显示器 */
+@media only screen and (min-width : 1200px) {  /*当屏幕宽度像素大于1200时*/
+    .lgScreenFull{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    .lgScreenHalf{
+        width: 49%;
+        position: relative;
+        display: inline-block;
+    }
+    .lgScreenQuarter{
+        width: 24%;
+        position: relative;
+        display: inline-block;
+    } 
+    .lgScreenThreeQuarter{
+        width: 74%;
+        position: relative;
+        display: inline-block;
+    }
+}
+/*---------自适应布局标签 over-----------------------*/
+
+/*---------floatLeft标签start--------------*/
+.floatLeft{
+    float: left;
+}
+
+/*---------floatLeft标签over--------------*/
+
+/*---------瀑布流组件布局start--------------*/
+.waterflowContainer{
+    position: relative;
+}
+.waterflowItem{
+    position: absolute;
+}
+/*---------瀑布流组件布局over--------------*/
+
+
+/*----图像随父容器等比缩放组件 start----------*/
+
+.resposityImgContainer{
+  overflow: hidden;
+}
+.resposityImg{  /*默认高度铺满，水平居中*/
+  display: block;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*------图像随父容器等比缩放组件 over------*/
+
+
+/*------拖拽幻灯图片组件start--------*/
+
+.galaryWindow{
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  height: 370px;
+  background-color: black;
+  vertical-align: center;
+}
+.galaryItem{
+  height: 100%;
+}
+
+/*------拖拽幻灯图片组件over--------*/
+
+/*---进度条组件start--------*/
+.progressBar{
+  border-style: groove;
+  border-color: bisque;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progressBar .progressFulfill{
+  height: 100%;
+  width: 0%;
+  background-color: blueviolet;
+   -moz-transition: width, 0.7s;
+    -o-transition: width, 0.7s;
+    -webkit-transition: width, 0.7s;
+    transition: width, 0.7s;
+} 
+
+/*---进度条组件over--------*/
